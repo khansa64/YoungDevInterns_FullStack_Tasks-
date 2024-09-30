@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>University Website System</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+
+<body class="p-3">
+    <form name="student" method="post" action="studentdb.php">
+        <div class="container">
+            <div class="row">
+
+                <!-- Course Information Section -->
+                <div class="col-sm-4">
+                    <h2 class="bg-secondary font-weight-bold text-white">
+                        <b> Course Information </b>
+                    </h2>
+                    <hr class="mb-3">
+
+                    <table border="1" class="table table-secondary display-5 font-weight-bold">
+                        <tr>
+                            <td>Course ID:</td>
+                            <td>
+                                <select name="courseid" id="iCourseid" style="width:200px; margin:2px; text-align: right">
+                                    <option value="space"></option>
+                                    <option value="STEM">STEM04954</option>
+                                    <option value="Legal Studies">LS905965</option>
+                                    <option value="Medical Science">MED290045</option>
+                                    <option value="Education">Edu390045</option>
+                                    <option value="Business">Bus490045</option>
+                                    <option value="Management">Man590045</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Faculty:</td>
+                            <td>
+                                <select name="faculty" id="iFaculty" style="width: 200px; margin:2px; text-align:right">
+                                    <option value="space"></option>
+                                    <option value="STEM">Science Technology Engineering & Maths</option>
+                                    <option value="Legal Studies">Law School</option>
+                                    <option value="Medical Science">Medical School</option>
+                                    <option value="Hospitality">Social Science</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>School:</td>
+                            <td>
+                                <select name="school" id="iSchool" style="width: 200px; margin:2px; text-align:right">
+                                    <option value="space"></option>
+                                    <option value="BIS">Business Information</option>
+                                    <option value="ComputerScience">Computer Sciences</option>
+                                    <option value="Maths">Maths</option>
+                                    <option value="Games">Computer Games</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attendance:</td>
+                            <td>
+                                <select name="attendance" id="iAttendance" style="width: 200px; margin:2px; text-align:right">
+                                    <option value="space"></option>
+                                    <option value="fulltime">Full Time</option>
+                                    <option value="parttime">Part Time</option>
+                                    <option value="distance">Distance</option>
+                                    <option value="sandwich">Sandwich Programme</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Academic Year:</td>
+                            <td>
+                                <select name="academic" id="iAcademic" style="width: 200px; margin:2px; text-align:right">
+                                    <option value="space"></option>
+                                    <option value="2018-2019">2018 - 2019</option>
+                                    <option value="2019-2020">2019 - 2020</option>
+                                    <option value="2020-2021">2020 - 2021</option>
+                                    <option value="2021-2022">2021 - 2022</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Year Level:</td>
+                            <td>
+                                <select name="yearlevel" id="iYearLevel" style="width: 200px; margin:2px; text-align:right">
+                                    <option value="space"></option>
+                                    <option value="zero">Year 0</option>
+                                    <option value="year1">Year 1</option>
+                                    <option value="year2">Year 2</option>
+                                    <option value="year3">Year 3</option>
+                                    <option value="year4">Year 4</option>
+                                    <option value="year5">Year 5</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Course Tutor:</td>
+                            <td><input type="text" name="tutor" id="iTutor" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Course Code:</td>
+                            <td><input type="text" name="coursecode" id="iCoursecode" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Course Title:</td>
+                            <td><input type="text" name="coursetitle" id="iCoursetitle" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Undergraduate:</td>
+                            <td><input type="text" name="undergraduate" id="iUndergraduate" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Postgraduate:</td>
+                            <td><input type="text" name="postgraduate" id="iPostgraduate" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Research:</td>
+                            <td><input type="text" name="research" id="iResearch" style="width: 200px; margin:2px; text-align:right"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Student Details Section -->
+                <div class="col-sm-4">
+                    <h2 class="bg-secondary font-weight-bold text-white"><b>Student Details</b></h2>
+                    <hr class="mb-3">
+                    <table border="1" class="table table-secondary display-5 font-weight-bold">
+
+                        <tr>
+                            <td>Student ID:</td>
+                            <td><input type="text" name="studentID" id="playerxid" style="width: 200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Title:</td>
+                            <td>
+                                <select name="title" id="iTitle" style="width: 200px; text-align:right;">
+                                    <option value="space"></option>
+                                    <option value="mr">Mr</option>
+                                    <option value="mrs">Mrs</option>
+                                    <option value="miss">Miss</option>
+                                    <option value="Doctor">Dr</option>
+                                    <option value="Professor">Prof</option>
+                                    <option value="Rev">Rev</option>
+                                    <option value="Captain">Capt</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Firstname:</td>
+                            <td><input type="text" name="firstname" id="ifirstname" placeholder="firstname" style="width: 200px; text-align:right" value="" required></td>
+                        </tr>
+
+                        <tr>
+                            <td>Surname:</td>
+                            <td><input type="text" name="surname" id="isurname" placeholder="surname" style="width: 200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Date of Birth:</td>
+                            <td><input type="text" name="dateofbirth" id="idob" style="width: 200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Gender:</td>
+                            <td>
+                                <input type="radio" name="gender" id="gender" value="m"> Male
+                                <input type="radio" name="gender" value="f"> Female
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Address:</td>
+                            <td><input type="text" name="address" id="iAddress" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Email:</td>
+                            <td><input type="text" name="email" id="iEmail" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Telephone:</td>
+                            <td><input type="text" name="telephone" id="itelephone" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Mobile:</td>
+                            <td><input type="text" name="mobile" id="imobile" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Emergency Contact:</td>
+                            <td><input type="text" name="econtact" id="icontact" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Relationship:</td>
+                            <td><input type="text" name="relationship" id="irelationship" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Qualification Grades Section -->
+                <div class="col-sm-4">
+                    <h2 class="bg-secondary font-weight-bold text-white"><b>Qualification Grade</b></h2>
+                    <hr class="mb-3">
+                    <table border="1" class="table table-secondary display-5 font-weight-bold">
+
+                        <tr>
+                            <td>Games:</td>
+                            <td><input type="text" name="games" id="iGames" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Software Testing:</td>
+                            <td><input type="text" name="softwaretesting" id="iSoftware" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Object Oriented:</td>
+                            <td><input type="text" name="objectoriented" id="iobject" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Computer Systems:</td>
+                            <td><input type="text" name="computersystems" id="iComputer" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Project x2:</td>
+                            <td><input type="text" name="project" id="iProject" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Total Score:</td>
+                            <td><input type="text" name="totalscore" id="iTotalScore" style="width:200px; text-align:right" value=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>Overall Average:</td>
+                            <td><input type="text" name="average" id="iAverage" style="width:200px; text-align:right" value="" readonly></td>
+                        </tr>
+
+                        <tr>
+                            <td>Classification:</td>
+                            <td><input type="text" name="classify" id="iClassify" style="width:200px; text-align:right" value="" readonly></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="button" value="Reset" onclick="btnclear()" style="width: 140px; height: 54px; font-size: 16px; border-radius:8px" class="btn-secondary"></td>
+                            <td><input type="submit" value="Academic Grade" onclick="btnResult()" style="width: 200px; height: 54px; border-radius: 8px" class="btn-secondary"></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <center>
+            <h3 class="display-5 font-weight-bold text-white bg-secondary">University Management System</h3>
+        </center>
+    </form>
+</body>
+
+</html>

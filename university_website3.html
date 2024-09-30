@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Knowledge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        nav {
+            background-color: #34495e;
+            overflow: hidden;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #2c3e50;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        section h2 {
+            margin-top: 0;
+            color: #34495e;
+        }
+
+        /* Home Page */
+        .home {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .home img {
+            width: 45%;
+            border-radius: 10px;
+        }
+
+        .home .text {
+            width: 50%;
+        }
+
+        /* Cards Section for departments */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background-color: #fff;
+            width: 30%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>University of Knowledge</h1>
+        <p>Your Future Starts Here</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#admissions">Admissions</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#portal">Student Portal</a></li>
+            <li><a href="#faculty">Faculty Portal</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="home">
+        <div class="text">
+            <h2>Welcome to the University of Knowledge</h2>
+            <p>The University of Knowledge is a premier institution offering world-class education and research opportunities. With a focus on innovation and leadership, we strive to shape the future by empowering students to excel academically and professionally.</p>
+        </div>
+        <img src="https://via.placeholder.com/600x400" alt="University Image">
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Founded in 1950, the University of Knowledge has been at the forefront of educational excellence for over 70 years. Our mission is to provide a comprehensive education that fosters the growth of both knowledge and character.</p>
+    </section>
+
+    <!-- Admissions Section -->
+    <section id="admissions">
+        <h2>Admissions</h2>
+        <p>Join our diverse and vibrant student community. Our admissions process is designed to help us get to know you better. Find out more about application deadlines, eligibility, and available programs.</p>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics">
+        <h2>Academics</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Department of Computer Science</h3>
+                <p>Explore cutting-edge technology and innovation in computer science. Our faculty and research opportunities are among the best in the world.</p>
+            </div>
+            <div class="card">
+                <h3>Department of Business</h3>
+                <p>Prepare for a career in business with our comprehensive undergraduate and graduate programs in management, finance, and more.</p>
+            </div>
+            <div class="card">
+                <h3>Department of Arts and Humanities</h3>
+                <p>Engage with literature, history, and the arts in our world-renowned programs that encourage critical thinking and creativity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Portal Section -->
+    <section id="portal">
+        <h2>Student Portal</h2>
+        <p>Access your courses, grades, and personal information by logging into the student portal.</p>
+        <a href="student-login.html">Login to Student Portal</a>
+    </section>
+
+    <!-- Faculty Portal Section -->
+    <section id="faculty">
+        <h2>Faculty Portal</h2>
+        <p>Faculty members can manage their classes, access student records, and upload resources in the faculty portal.</p>
+        <a href="faculty-login.html">Login to Faculty Portal</a>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to contact us via email or phone, or visit us on campus.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#admissions">Admissions</a>
+            <a href="#academics">Academics</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; 2024 University of Knowledge. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
