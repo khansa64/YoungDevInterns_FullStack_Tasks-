@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiLogin School System</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            background-color: #fafafa;
+            transition: background-color 0.2s;
+        }
+
+        input:focus {
+            background-color: #e6f7ff;
+            border-color: #3399ff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #3399ff;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #267fcc;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .dashboard-container p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .dashboard-container button {
+            margin-top: 20px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input, button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- School Admin Login Container -->
+    <div class="container" id="schoolAdminLoginContainer">
+        <h2>School Admin Login</h2>
+        <form id="schoolAdminLoginForm">
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" placeholder="Enter your username" required>
+            
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" placeholder="Enter your password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p id="adminLoginError" class="error-message"></p>
+    </div>
+
+    <!-- School Admin Dashboard -->
+    <div class="container dashboard-container" id="schoolAdminDashboard" style="display: none;">
+        <h2>Welcome to your Dashboard</h2>
+        <p id="adminNameDisplay"></p>
+        <button id="logoutAdminBtn">Logout</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const schoolAdminLoginContainer = document.getElementById('schoolAdminLoginContainer');
+            const schoolAdminDashboard = document.getElementById('schoolAdminDashboard');
+            const adminLoginError = document.getElementById('adminLoginError');
+            const adminNameDisplay = document.getElementById('adminNameDisplay');
+
+            // Sample school admin credentials stored in localStorage for demo purposes
+            const schoolAdmins = [
+                { username: "schoolAdminA", password: "admin123", school: "SchoolA" },
+                { username: "schoolAdminB", password: "admin456", school: "SchoolB" }
+            ];
+
+            // Store sample admin data in localStorage if not already stored
+            if (!localStorage.getItem('schoolAdmins')) {
+                localStorage.setItem('schoolAdmins', JSON.stringify(schoolAdmins));
+            }
+
+            // Check if a school admin is already logged in
+            const currentAdmin = localStorage.getItem('currentAdmin');
+
+            if (currentAdmin) {
+                showAdminDashboard(JSON.parse(currentAdmin).username);
+            } else {
+                schoolAdminLoginContainer.style.display = 'block';
+            }
+
+            // Handle Admin Login
+            document.getElementById('schoolAdminLoginForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const adminUsername = document.getElementById('adminUsername').value;
+                const adminPassword = document.getElementById('adminPassword').value;
+
+                const storedAdmins = JSON.parse(localStorage.getItem('schoolAdmins'));
+                const admin = storedAdmins.find(admin => admin.username === adminUsername && admin.password === adminPassword);
+
+                if (admin) {
+                    // Save current admin session in localStorage
+                    localStorage.setItem('currentAdmin', JSON.stringify(admin));
+                    showAdminDashboard(admin.username);
+                } else {
+                    adminLoginError.textContent = "Invalid username or password.";
+                }
+            });
+
+            // Display Admin Dashboard
+            function showAdminDashboard(username) {
+                schoolAdminLoginContainer.style.display = 'none';
+                schoolAdminDashboard.style.display = 'block';
+                adminNameDisplay.textContent = `Logged in as: ${username}`;
+            }
+
+            // Handle Admin Logout
+            document.getElementById('logoutAdminBtn').addEventListener('click', function() {
+                localStorage.removeItem('currentAdmin');
+                location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

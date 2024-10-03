@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dashboard-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Container -->
+    <div class="container" id="loginContainer">
+        <h2>School Login</h2>
+        <form id="loginForm">
+            <label for="schoolName">School Name:</label>
+            <input type="text" id="schoolName" placeholder="Enter school name" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p id="error" class="error-message"></p>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="container dashboard-container" id="dashboardContainer">
+        <h2>Welcome to the School Dashboard</h2>
+        <p id="schoolNameDisplay"></p>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script>
+        // Sample school credentials stored in localStorage for demo
+        const schools = [
+            { name: "SchoolA", password: "1234" },
+            { name: "SchoolB", password: "5678" }
+        ];
+
+        // Save school data in localStorage for the first time
+        if (!localStorage.getItem('schools')) {
+            localStorage.setItem('schools', JSON.stringify(schools));
+        }
+
+        const loginContainer = document.getElementById('loginContainer');
+        const dashboardContainer = document.getElementById('dashboardContainer');
+
+        // Check if a school is already logged in
+        const currentSchool = localStorage.getItem('currentSchool');
+        
+        if (currentSchool) {
+            // Show Dashboard if already logged in
+            showDashboard(currentSchool);
+        } else {
+            // Show Login form if not logged in
+            loginContainer.style.display = 'block';
+        }
+
+        // Handle Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const schoolName = document.getElementById('schoolName').value;
+            const password = document.getElementById('password').value;
+            
+            // Get stored school data
+            const storedSchools = JSON.parse(localStorage.getItem('schools'));
+
+            // Check credentials
+            const school = storedSchools.find(school => school.name === schoolName && school.password === password);
+            
+            if (school) {
+                localStorage.setItem('currentSchool', schoolName);  // Store logged-in school
+                showDashboard(schoolName);  // Show Dashboard
+            } else {
+                document.getElementById('error').textContent = "Invalid school name or password.";
+            }
+        });
+
+        // Display the Dashboard
+        function showDashboard(schoolName) {
+            loginContainer.style.display = 'none';
+            dashboardContainer.style.display = 'block';
+            document.getElementById('schoolNameDisplay').textContent = `Logged in as: ${schoolName}`;
+        }
+
+        // Handle Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentSchool');
+            location.reload();  // Reload the page to show login form again
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: #f7f7f7;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #f093fb;
+            background-color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #8ec5fc, #e0c3fc);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .dashboard-container,
+        .admin-container {
+            text-align: center;
+        }
+
+        .admin-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .admin-container table,
+        .admin-container th,
+        .admin-container td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        .admin-container th {
+            background-color: #ff9a9e;
+            color: white;
+            font-weight: bold;
+        }
+
+        .admin-container td {
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: #ff6b6b;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #e57373;
+        }
+
+        .admin-container form {
+            margin-top: 20px;
+        }
+
+        .admin-container form input,
+        .admin-container form button {
+            margin-top: 10px;
+        }
+
+        .school-list {
+            margin-top: 20px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Admin Login Container -->
+    <div class="container fade-in" id="adminLoginContainer">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm">
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" placeholder="Enter admin username" required>
+
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+
+            <button type="submit">Login as Admin</button>
+        </form>
+        <p id="adminError" class="error-message"></p>
+    </div>
+
+    <!-- School Login Container -->
+    <div class="container fade-in" id="schoolLoginContainer">
+        <h2>School Login</h2>
+        <form id="schoolLoginForm">
+            <label for="schoolName">School Name:</label>
+            <input type="text" id="schoolName" placeholder="Enter school name" required>
+
+            <label for="schoolPassword">Password:</label>
+            <input type="password" id="schoolPassword" placeholder="Enter password" required>
+
+            <button type="submit">Login as School</button>
+        </form>
+        <p id="schoolError" class="error-message"></p>
+    </div>
+
+    <!-- Admin Dashboard Container -->
+    <div class="container fade-in admin-container" id="adminContainer">
+        <h2>Admin Panel</h2>
+        <button class="logout-btn" id="logoutAdminBtn">Logout</button>
+        <h3>Manage Schools</h3>
+        <form id="addSchoolForm">
+            <label for="newSchoolName">School Name:</label>
+            <input type="text" id="newSchoolName" placeholder="Enter school name" required>
+
+            <label for="newSchoolPassword">Password:</label>
+            <input type="text" id="newSchoolPassword" placeholder="Enter password" required>
+
+            <button type="submit">Add School</button>
+        </form>
+        <h3 class="school-list">Existing Schools</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>School Name</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="schoolList"></tbody>
+        </table>
+    </div>
+
+    <!-- School Dashboard Container -->
+    <div class="container fade-in dashboard-container" id="dashboardContainer">
+        <h2>Welcome to the School Dashboard</h2>
+        <p id="schoolNameDisplay"></p>
+        <button class="logout-btn" id="logoutSchoolBtn">Logout</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const adminLoginContainer = document.getElementById('adminLoginContainer');
+            const schoolLoginContainer = document.getElementById('schoolLoginContainer');
+            const adminContainer = document.getElementById('adminContainer');
+            const dashboardContainer = document.getElementById('dashboardContainer');
+            const schoolList = document.getElementById('schoolList');
+
+            const adminCredentials = {
+                username: "admin",
+                password: "admin123"
+            };
+
+            let schools = [
+                { name: "SchoolA", password: "1234" },
+                { name: "SchoolB", password: "5678" }
+            ];
+
+            if (!localStorage.getItem('schools')) {
+                localStorage.setItem('schools', JSON.stringify(schools));
+            }
+
+            const currentAdmin = localStorage.getItem('currentAdmin');
+            const currentSchool = localStorage.getItem('currentSchool');
+
+            if (currentAdmin) {
+                showAdminPanel();
+            } else if (currentSchool) {
+                showSchoolDashboard(currentSchool);
+            } else {
+                adminLoginContainer.style.display = 'block';
+                schoolLoginContainer.style.display = 'block';
+            }
+
+            document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const adminUsername = document.getElementById('adminUsername').value;
+                const adminPassword = document.getElementById('adminPassword').value;
+
+                if (adminUsername === adminCredentials.username && adminPassword === adminCredentials.password) {
+                    localStorage.setItem('currentAdmin', adminUsername);
+                    showAdminPanel();
+                } else {
+                    document.getElementById('adminError').textContent = "Invalid admin credentials.";
+                }
+            });
+
+            document.getElementById('schoolLoginForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const schoolName = document.getElementById('schoolName').value;
+                const schoolPassword = document.getElementById('schoolPassword').value;
+
+                const storedSchools = JSON.parse(localStorage.getItem('schools'));
+                const school = storedSchools.find(school => school.name === schoolName && school.password === schoolPassword);
+
+                if (school) {
+                    localStorage.setItem('currentSchool', schoolName);
+                    showSchoolDashboard(schoolName);
+                } else {
+                    document.getElementById('schoolError').textContent = "Invalid school name or password.";
+                }
+            });
+
+            function showAdminPanel() {
+                adminLoginContainer.style.display = 'none';
+                schoolLoginContainer.style.display = 'none';
+                adminContainer.style.display = 'block';
+                loadSchools();
+            }
+
+            function showSchoolDashboard(schoolName) {
+                schoolLoginContainer.style.display = 'none';
+                adminLoginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+                document.getElementById('schoolNameDisplay').textContent = `Logged in as: ${schoolName}`;
+            }
+
+            function loadSchools() {
+                const storedSchools = JSON.parse(localStorage.getItem('schools'));
+                schoolList.innerHTML = '';
+                storedSchools.forEach((school, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${school.name}</td>
+                        <td>${school.password}</td>
+                        <td><button onclick="deleteSchool(${index})">Delete</button></td>
+                    `;
+                    schoolList.appendChild(row);
+                });
+            }
+
+            document.getElementById('addSchoolForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const newSchoolName = document.getElementById('newSchoolName').value;
+                const newSchoolPassword = document.getElementById('newSchoolPassword').value;
+
+                let storedSchools = JSON.parse(localStorage.getItem('schools'));
+                storedSchools.push({ name: newSchoolName, password: newSchoolPassword });
+                localStorage.setItem('schools', JSON.stringify(storedSchools));
+                loadSchools();
+            });
+
+            window.deleteSchool = function (index) {
+                let storedSchools = JSON.parse(localStorage.getItem('schools'));
+                storedSchools.splice(index, 1);
+                localStorage.setItem('schools', JSON.stringify(storedSchools));
+                loadSchools();
+            };
+
+            document.getElementById('logoutAdminBtn').addEventListener('click', function () {
+                localStorage.removeItem('currentAdmin');
+                location.reload();
+            });
+
+            document.getElementById('logoutSchoolBtn').addEventListener('click', function () {
+                localStorage.removeItem('currentSchool');
+                location.reload();
+            });
+        });
+    </script>
+</body>
+
+</html>
